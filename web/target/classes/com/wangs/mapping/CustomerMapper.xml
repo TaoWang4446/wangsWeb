@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangs.dao.CustomerMapper">
+	<resultMap id="BaseResultMap" type="com.wangs.pojo.Customer">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="loginname" property="loginname" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
+		<result column="region_id" property="regionId" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="company_address" property="companyAddress"
+			jdbcType="VARCHAR" />
+		<result column="company_licence" property="companyLicence"
+			jdbcType="VARCHAR" />
+		<result column="service_user" property="serviceUser" jdbcType="INTEGER" />
+		<result column="authstatus" property="authstatus" jdbcType="INTEGER" />
+		<result column="auth_info" property="authInfo" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="updatedate" property="updatedate" jdbcType="VARCHAR" />
+		<result column="createdate" property="createdate" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, loginname, password, mobile, name, email, province_id, city_id,
+		region_id, address,
+		company_name, company_address, company_licence, service_user, authstatus,
+		auth_info,
+		status, updatedate, createdate
+	</sql>
+
+	<select id="getCustomerList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select * from kf_user
+	</select>
+	<select id="getList" resultType="com.wangs.pojo.Customer">
+		select * from kf_user
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from kf_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from kf_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.wangs.pojo.Customer">
+		insert into kf_user (id, loginname, password,
+		mobile, name, email,
+		province_id, city_id, region_id,
+		address, company_name, company_address,
+		company_licence, service_user, authstatus,
+		auth_info, status, updatedate,
+		createdate)
+		values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR},
+		#{regionId,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR},
+		#{companyLicence,jdbcType=VARCHAR}, #{serviceUser,jdbcType=INTEGER},
+		#{authstatus,jdbcType=INTEGER},
+		#{authInfo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{updatedate,jdbcType=VARCHAR},
+		#{createdate,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.wangs.pojo.Customer">
+		insert into kf_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="loginname != null">
+				loginname,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="provinceId != null">
+				province_id,
+			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="regionId != null">
+				region_id,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="companyName != null">
+				company_name,
+			</if>
+			<if test="companyAddress != null">
+				company_address,
+			</if>
+			<if test="companyLicence != null">
+				company_licence,
+			</if>
+			<if test="serviceUser != null">
+				service_user,
+			</if>
+			<if test="authstatus != null">
+				authstatus,
+			</if>
+			<if test="authInfo != null">
+				auth_info,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="updatedate != null">
+				updatedate,
+			</if>
+			<if test="createdate != null">
+				createdate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="loginname != null">
+				#{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceId != null">
+				#{provinceId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="regionId != null">
+				#{regionId,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddress != null">
+				#{companyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="companyLicence != null">
+				#{companyLicence,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceUser != null">
+				#{serviceUser,jdbcType=INTEGER},
+			</if>
+			<if test="authstatus != null">
+				#{authstatus,jdbcType=INTEGER},
+			</if>
+			<if test="authInfo != null">
+				#{authInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="updatedate != null">
+				#{updatedate,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wangs.pojo.Customer">
+		update kf_user
+		<set>
+			<if test="loginname != null">
+				loginname = #{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceId != null">
+				province_id = #{provinceId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				city_id = #{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="regionId != null">
+				region_id = #{regionId,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				company_name = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddress != null">
+				company_address = #{companyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="companyLicence != null">
+				company_licence = #{companyLicence,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceUser != null">
+				service_user = #{serviceUser,jdbcType=INTEGER},
+			</if>
+			<if test="authstatus != null">
+				authstatus = #{authstatus,jdbcType=INTEGER},
+			</if>
+			<if test="authInfo != null">
+				auth_info = #{authInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="updatedate != null">
+				updatedate = #{updatedate,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				createdate = #{createdate,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wangs.pojo.Customer">
+		update kf_user
+		set loginname = #{loginname,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		province_id = #{provinceId,jdbcType=VARCHAR},
+		city_id = #{cityId,jdbcType=VARCHAR},
+		region_id = #{regionId,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		company_name = #{companyName,jdbcType=VARCHAR},
+		company_address = #{companyAddress,jdbcType=VARCHAR},
+		company_licence = #{companyLicence,jdbcType=VARCHAR},
+		service_user = #{serviceUser,jdbcType=INTEGER},
+		authstatus = #{authstatus,jdbcType=INTEGER},
+		auth_info = #{authInfo,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		updatedate = #{updatedate,jdbcType=VARCHAR},
+		createdate = #{createdate,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
